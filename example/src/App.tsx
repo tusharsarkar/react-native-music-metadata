@@ -4,15 +4,20 @@ import { StyleSheet, View, Text } from 'react-native';
 import MusicMetadata from 'react-native-music-metadata';
 
 export default function App() {
-  const [result, setResult] = React.useState<number | undefined>();
+  const [results, setResults] = React.useState<Array<object> | []>();
 
   React.useEffect(() => {
-    MusicMetadata.multiply(3, 7).then(setResult);
+    MusicMetadata.getMetadata(['/path/to/your/track.mp3']).then(setResults);
   }, []);
 
   return (
     <View style={styles.container}>
-      <Text>Result: {result}</Text>
+      {
+        results.forEach((result: object) => {
+          <Text>Result: {result.title}</Text>
+        })
+      }
+
     </View>
   );
 }

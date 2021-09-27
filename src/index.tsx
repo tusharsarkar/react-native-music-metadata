@@ -1,7 +1,7 @@
 import { NativeModules } from 'react-native';
 
 type MusicMetadataType = {
-  multiply(a: number, b: number): Promise<number>;
+  getMetadata(uris: Array<String>): Promise<Array<object>>;
 };
 
 const { MusicMetadata } = NativeModules;
